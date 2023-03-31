@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    app:contentPadding="5dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginBottom="8dp"
+    android:elevation="0dp"
+    android:layout_height="wrap_content">
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+      <TextView
+          android:id="@+id/DateWeek"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="16dp"
+          android:layout_marginTop="8dp"
+          android:text="TUE"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
+
+      <TextView
+          android:id="@+id/Date"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="02/21"
+          app:layout_constraintEnd_toEndOf="@+id/DateWeek"
+          app:layout_constraintStart_toStartOf="@+id/DateWeek"
+          app:layout_constraintTop_toBottomOf="@+id/DateWeek" />
+
+
+      <ImageView
+          android:id="@+id/WeatherImage"
+          android:layout_width="40dp"
+          android:layout_height="40dp"
+          android:layout_marginStart="24dp"
+          android:layout_marginBottom="4dp"
+          android:src="@mipmap/ic_launcher"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintStart_toEndOf="@+id/Date"
+          app:layout_constraintTop_toTopOf="@+id/DateWeek" />
+
+      <TextView
+          android:id="@+id/WeatherDesc"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="16dp"
+          android:text="intermitten clouds"
+          android:textColor="@color/black"
+          android:textSize="16sp"
+          app:layout_constraintBottom_toBottomOf="@+id/WeatherImage"
+          app:layout_constraintStart_toEndOf="@+id/WeatherImage"
+          app:layout_constraintTop_toTopOf="@+id/WeatherImage" />
+
+      <TextView
+          android:id="@+id/WeatherDegree"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginEnd="16dp"
+          android:text="22 / 5 c"
+          android:textStyle="bold"
+          android:textColor="@color/black"
+          app:layout_constraintBottom_toBottomOf="@+id/WeatherDesc"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintTop_toTopOf="@+id/WeatherDesc" />
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</com.google.android.material.card.MaterialCardView>
