@@ -1,6 +1,6 @@
 package com.example.myvestiaireweather.data.repository
 
-import com.example.myvestiaireweather.data.cache.CacheDataSourceContract
+import com.example.myvestiaireweather.data.cache.dao.WeatherDao
 import com.example.myvestiaireweather.data.cache.model.WeatherCacheModel
 import com.example.myvestiaireweather.data.remote.WeatherService
 import com.example.myvestiaireweather.data.remote.model.WeatherResponse
@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 class WeatherRepository @Inject constructor(
    private val weatherService: WeatherService,
-   private val dao: CacheDataSourceContract,
+   private val dao: WeatherDao,
 ): WeatherRepositoryContract {
 
    override suspend fun getWeatherForecast(query: Map<String, String>): WeatherResponse {

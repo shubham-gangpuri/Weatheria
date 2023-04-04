@@ -4,12 +4,7 @@ import android.app.Application
 import androidx.room.Room
 import com.example.myvestiaireweather.common.Constant.DB_NAME
 import com.example.myvestiaireweather.data.cache.AppDatabase
-import com.example.myvestiaireweather.data.cache.CacheDataSource
-import com.example.myvestiaireweather.data.cache.CacheDataSourceContract
 import com.example.myvestiaireweather.data.cache.dao.WeatherDao
-import com.example.myvestiaireweather.data.repository.WeatherRepository
-import com.example.myvestiaireweather.domain.WeatherRepositoryContract
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
