@@ -9,12 +9,10 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface WeatherDao {
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertWeather(entity: WeatherCacheModel)
+  @Insert(onConflict = OnConflictStrategy.REPLACE)
+  suspend fun insertWeather(entity: WeatherCacheModel)
 
-    @Query("SELECT * FROM WEATHER_TABLE")
-    fun getWeather(): Flow<WeatherCacheModel>
+  @Query("SELECT * FROM WEATHER_TABLE") fun getWeather(): Flow<WeatherCacheModel>
 
-    @Query("DELETE FROM WEATHER_TABLE")
-    suspend fun clearWeatherData()
+  @Query("DELETE FROM WEATHER_TABLE") suspend fun clearWeatherData()
 }

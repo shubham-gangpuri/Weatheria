@@ -14,52 +14,52 @@ import com.example.myvestiaireweather.domain.entity.WeatherDataEntity
 import com.example.myvestiaireweather.ui.ext.formatUnixTime
 import kotlin.math.roundToLong
 
+class WeatherListAdapter(private val onclick: (data: WeatherDataEntity) -> Unit) :
+  ListAdapter<WeatherDataEntity, WeatherListAdapter.WeatherListVH>(weatherListDiff) {
 
-class WeatherListAdapter(private val onclick:(data: WeatherDataEntity)->Unit):ListAdapter<WeatherDataEntity, WeatherListAdapter.WeatherListVH>(weatherListDiff) {
+  inner class WeatherListVH(private val binding: WeatherListLayoutBinding) :
+    RecyclerView.ViewHolder(binding.root) {
 
-    inner class WeatherListVH(private val binding:WeatherListLayoutBinding):RecyclerView.ViewHolder(binding.root){
+    fun bind(data: WeatherDataEntity) {
+      with(binding) {
+        root.setOnClickListener { onclick(data) }
+        WeatherDesc.text = data.weather[0].description
+        WeatherImage.load(IMAGE_URL.plus(data.weather[0].icon).plus(".png"))
+        WeatherDegree.text = "${data.temp.day.roundToLong()}°C"
+        DateWeek.text =
+          data.timeOfForecast.toLong().formatUnixTime(WEEK_DATE_PATTERN).substring(0, 3)
+        Date.text = data.timeOfForecast.toLong().formatUnixTime(DAY_MONTH_DATE_PATTERN)
+      }
+    }
+  }
 
-        fun bind(data: WeatherDataEntity){
-            with(binding){
+  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeatherListVH {
+    return WeatherListVH(
+      WeatherListLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+    )
+  }
 
-                root.setOnClickListener {
-                    onclick(data)
-                }
-                WeatherDesc.text = data.weather[0].description
-                WeatherImage.load(IMAGE_URL.plus(data.weather[0].icon).plus(".png"))
-                WeatherDegree.text = "${data.temp.day.roundToLong()}°C"
-                DateWeek.text = data.timeOfForecast.toLong().formatUnixTime(WEEK_DATE_PATTERN).substring(0,3)
-                Date.text = data.timeOfForecast.toLong().formatUnixTime(DAY_MONTH_DATE_PATTERN)
+  override fun onBindViewHolder(holder: WeatherListVH, position: Int) {
+    val data = getItem(position)
+    holder.bind(data)
+  }
 
-
-
-
-            }
+  companion object {
+    val weatherListDiff =
+      object : DiffUtil.ItemCallback<WeatherDataEntity>() {
+        override fun areItemsTheSame(
+          oldItem: WeatherDataEntity,
+          newItem: WeatherDataEntity
+        ): Boolean {
+          return oldItem == newItem
         }
-    }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeatherListVH {
-        return WeatherListVH(WeatherListLayoutBinding.inflate(LayoutInflater.from(parent.context),parent,false))
-    }
-
-    override fun onBindViewHolder(holder: WeatherListVH, position: Int) {
-        val data  = getItem(position)
-        holder.bind(data)
-    }
-
-    companion object{
-        val weatherListDiff = object : DiffUtil.ItemCallback<WeatherDataEntity>(){
-            override fun areItemsTheSame(oldItem: WeatherDataEntity, newItem: WeatherDataEntity): Boolean {
-                return oldItem == newItem
-            }
-
-            override fun areContentsTheSame(
-                oldItem: WeatherDataEntity,
-                newItem: WeatherDataEntity
-            ): Boolean {
-               return oldItem.pop == newItem.pop
-            }
-
+        override fun areContentsTheSame(
+          oldItem: WeatherDataEntity,
+          newItem: WeatherDataEntity
+        ): Boolean {
+          return oldItem.pop == newItem.pop
         }
-    }
+      }
+  }
 }

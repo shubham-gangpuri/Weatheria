@@ -8,9 +8,7 @@ import com.example.myvestiaireweather.data.cache.dao.WeatherDao
 import com.example.myvestiaireweather.data.cache.model.WeatherCacheModel
 
 @Database(entities = [WeatherCacheModel::class], version = 1, exportSchema = false)
-@TypeConverters(
-    ListTypeConverter::class
-)
-abstract class AppDatabase:RoomDatabase(){
-    abstract fun weatherDao() : WeatherDao
+@TypeConverters(ListTypeConverter::class)
+abstract class AppDatabase : RoomDatabase() {
+  abstract fun weatherDao(): WeatherDao
 }

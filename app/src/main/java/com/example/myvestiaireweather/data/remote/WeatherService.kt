@@ -6,10 +6,6 @@ import retrofit2.http.QueryMap
 
 interface WeatherService {
 
-    @GET("forecast/daily")
-    suspend fun getWeatherForecast(
-        @QueryMap queries:Map<String,String>
-    ):WeatherResponse
-
+  @GET("forecast/daily")
+  suspend fun getWeatherForecast(@QueryMap queries: Map<String, String>): WeatherResponse
 }
-

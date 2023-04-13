@@ -9,7 +9,7 @@ import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @[Module InstallIn(SingletonComponent::class)]
-interface  DomainModule {
-    @get:[Binds  Singleton]
-    val DefaultAsyncDispatcher.dipatcher:AsyncDispatcher
+interface DomainModule {
+  @get:[Binds Singleton]
+  val DefaultAsyncDispatcher.dipatcher: AsyncDispatcher
 }

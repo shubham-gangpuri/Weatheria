@@ -4,7 +4,7 @@ plugins {
     id 'com.google.dagger.hilt.android'
     id 'kotlin-kapt'
     id 'androidx.navigation.safeargs.kotlin'
-
+    id 'com.ncorti.ktfmt.gradle'
 }
 
 android {
@@ -38,6 +38,17 @@ android {
     buildFeatures {
         viewBinding true
     }
+
+    ktfmt {
+        // Dropbox style - 4 space indentation
+//        dropboxStyle()
+
+        // Google style - 2 space indentation
+        googleStyle()
+
+        // KotlinLang style - 4 space indentation - From kotlinlang.org/docs/coding-conventions.html
+//        kotlinLangStyle()
+    }
 }
 
 kapt {
@@ -46,7 +57,6 @@ kapt {
 
 dependencies {
     def lifecycle_version = "2.6.1"
-    def arch_version = "2.2.0"
     def room_version = "2.5.1"
     def nav_version = '2.5.3'
 
@@ -54,7 +64,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
 
-    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.core:core-ktx:1.10.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
 
     implementation 'com.google.android.material:material:1.8.0'

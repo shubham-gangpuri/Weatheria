@@ -11,11 +11,8 @@ import javax.inject.Singleton
 @[Module InstallIn(SingletonComponent::class)]
 class ConnectionModule {
 
-    @[Provides Singleton]
-    fun provideNetworkDetector(
-        application: Application
-    ):NetworkDetector{
-        return NetworkDetector(application)
-    }
-
+  @[Provides Singleton]
+  fun provideNetworkDetector(application: Application): NetworkDetector {
+    return NetworkDetector(application)
+  }
 }
